@@ -11,6 +11,7 @@
 #include "addons/TokenHelper.h"
 #include "addons/RTDBHelper.h"
 
+//Wifi and database/api info
 #define WIFI_SSID "*****"
 #define WIFI_PASSWORD "*****"
 #define API_KEY "*****"
@@ -24,7 +25,9 @@
 
 #define MSG_BUFFER_SIZE  (50)
 #define RST_PIN         16        
+
 #define SS_PIN          17        
+//Adafruit info
 #define IO_USERNAME  "*****"
 #define IO_KEY       "*****"
 
@@ -79,6 +82,7 @@ void reconnect() {
     if (client.connect(clientId.c_str(), mqttUser, mqttPassword)) {
       Serial.println("conectado");
       // Depois de conectado, publique um anúncio ...
+      //My feeds
       client.publish("danielnobre09/feeds/Nome", "Iniciando Comunicação");
       client.publish("danielnobre09/feeds/Temperatura", "Iniciando Comunicação");
       client.publish("danielnobre09/feeds/Umidade", "Iniciando Comunicação");
@@ -169,6 +173,7 @@ void loop() {
       Serial.println("Nova tag (diferente da anterior)");
       lastTagID = tagID;
 
+      //Formating strings to access the database
       tagName = "/USERTAG/" + tagID + "/Name";
       tagTemp = "/USERTAG/" + tagID + "/AIR/temp";
       tagIsOn = "/USERTAG/" + tagID + "/AIR/isOn";
